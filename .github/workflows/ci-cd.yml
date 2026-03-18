@@ -12,7 +12,7 @@ jobs:
   # JOB 1: Linting Básico
   # ============================================
   lint:
-    name: 🔍 Linting
+    name: Linting
     runs-on: ubuntu-latest
     
     steps:
@@ -41,7 +41,7 @@ jobs:
   # JOB 2: Tests
   # ============================================
   test:
-    name: 🧪 Tests
+    name: Tests
     runs-on: ubuntu-latest
     needs: lint
     
@@ -70,7 +70,7 @@ jobs:
   # JOB 3: Notificación
   # ============================================
   notify:
-    name: 📬 Status
+    name: Status
     runs-on: ubuntu-latest
     needs: [lint, test]
     if: always()
