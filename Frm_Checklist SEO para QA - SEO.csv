@@ -1,0 +1,41 @@
+Checklist - SEO Técnico,,,
+,,,
+#,Item,Comentario,Comentario revisión
+1,Archivo robots.txt,Se debe contar con un archivo robots.txt que de los lineamientos de rastreo a los motores de búsqueda.,
+2,Redirecciones,"Se debe contar con administración de redirecciones de contenidos eliminados, 301 para contenidos redireccionados en tiempo definitivo y 302 para contenidos temporales como en caso de páginas promocionales o temporales.",
+3,Headings de las páginas,"Se debe implementar la etiqueta H1 para el título principal de cada página. Subtítulos y títulos secundarios deben incluir etiquetas H2, H3 o H4 según la jerarquía de contenido.",
+4,Metatitulo,Es el título que se muestra en los SERP (resultados en google) debe contener el número de caracteres recomendado por Google y se debe poder personalizar. Debe incluir palabras clave teniendo en cuenta la manera en que hacen la búsqueda los usuarios.,
+5,Metadescripción,Es la descripción que se muestra en los SERP (resultados de búsqueda). Debe contener el número de caracteres recomendado por Google y se debe poder personalizar. Debe incluir palabras clave teniendo en cuenta la manera en que hacen la búsqueda los usuarios.,
+6,Canonical en la url,Se debe implementar la etiqueta Canonical con el fin de evitar contenidos duplicados.,
+7,Hreflang y Geotargeting,"Se debe establecer el idioma principal del sitio por país y lenguaje. Normalmente se usa en sitios multiidioma pero se puede incluir a un sitio de un solo idioma para posicionar contenidos en una referencia geográfica, como colombia. <html lang = ”co-es”> - Colombia - Español.",
+8,Renderización desde el servidor,Revisar desde el inspeccionar si la página se renderiza correctamente desde el servidor.,
+9,"URL's, Imágenes que llevan a 404","Se valida que dentro del sitio no existan redirecciones, páginas o imágenes que lleven a una página 404",
+10,Errores de consola,Validar desde el inspeccionar si se encuentran errores en la consola.,
+11,Página 404,Configurar la página 404 permitiendo la navegación fluida del usuario. UX define la estrategia de contenido para este sitio.,
+12,Miga de pan,Se implementa la etiqueta Breadcrumb con el fin de dar a entender la jerarquía de navegación de los contenidos a los motores de búsqueda. ,
+13,Marcado Opengraph,"Se recomienda realizar el marcado Opengraph, ayuda a mejorar la experiencia del usuario al momento de compartir la información en redes sociales y al negocio para tener control sobre los textos e imágenes que se generan de manera automatica al compartir un contenido.",
+14,Marcado Twitter Cards,"Se recomienda realizar el marcado twittercards, ayuda a mejorar la experiencia del usuario al momento de compartir la información en twitter y al negocio para tener control sobre los textos e imagenes que se generan de manera automática al compartir un contenido.",
+15,Responsive,El sitio debe ser responsive de manera fluida a través de las distintas resoluciones de dispositivos en el mercado. ,
+16,Velocidad de carga,La velocidad de carga debe ser optimizada para dispositivos móviles o escritorio teniendo en cuenta el tiempo de espera del servidor (TTFB). ,
+17,Menú con etiqueta nav,Los menús del sitio cuentan con la etiqueta nav,
+18,Elementos de menú ,Los elementos de los menú's se encuentran bajo una lista no ordenada.,
+19,Nombre de archivos cargados,"Los archivos cargados deben tener un nombrado semántico separado por guión medio y describiendo el contenido del archivo. No se debe incluir caracteres especiales, ni tildes ni la letra ñ. Los nombres de las imágenes deben describir la imagen o la sección donde se encuentran ubicadas. No se debe incluir caracteres especiales, ni tíldes ni ñ. (No utilizar el nombrado por defecto, img-01.jpg o DSC-012441.jpg)",
+20,Peso de las imágenes,"Se recomienda un peso inferior a 100kb para las imagenes de contenido menores a 600px de ancho, para banners e imágenes de gran tamaño se recomienda un peso lo más cercano a 100kb posible y no superior a 400kb. No se recomienda que las páginas tenga un peso superior a 1mb solo en peso de imágenes. ",
+21,"Texto alternativo ""alt""",El texto alternativo de las imágenes puede ser homologado con el nombre del archivo. Este puede incluir tildes y ñ pero no caracteres especiales. Si se puede hacer de manera manual debe incluir palabras claves dirigidas a aparecer en resultado de búsquedas de imágenes en Google. ,
+22,Redirecciones http a https ,El dominio del sitio debe redirigir a protocolo seguro siempre.,
+23,URL con www o sin www,"Las Urls deben definirse con o sin www, en posicionamiento no influye si lo tiene o no, pero no definir una propiedad especifica puede generar contenido duplicado. Recomendamos incluir el www ya que actualmente lo tiene. La propiedad principal sería https://www.comfama.com/  ",
+24,Sistema de búsquedas internas,"En caso de tener búsquedas internas en el sitio, asegurarse de que las funciones no generen problemas de contenidos duplicados por la creación de parámetros. ",
+25,Evitar carga de pop-up's,Vaidar si dentro del sitio se encuentran pop-up's o intersitials que puedan retrasar la carga del sitio,
+26,Mapa del sitio ,"La creación del archivo xml debe ser automático según la creación de contenidos en el sitio, debe incluir páginas de contenido, categorías y subcategorías. Las etiquetas u otros elmementos de filtrado de información (como paginación) no es necesario incluirlos. La priorización de rastreo se define según el nivel de clics o importancia para la indexación del contenido.",
+27,PWA,La página funciona bien desde la PWA (Si aplica),
+28,Arquitectura URL,"Se recomiendan URL's con palabras sencillas y descriptivas y en lugar de espacios, separados por guiones  
+
+No se recomiendan URL's que utilizan caracteres especiales (ñ, *, _, +, ´, etc), con números de ID largos e ilegibles, guiones bajos, palabras clave de la URL escritas juntas, ",
+29,Atributos para enlaces,"Se recomiendan los siguientes atributos, cualquier otro que no esté incluido, se recomienda no utilizar
+
+Rel index / noindex: Indica si la página a la que apunta el enlace debe o no indexarse.
+
+Rel follow / nofollow: Le indica a la araña si debe rastrear o no la página enlazada.
+
+Rel canonical: Indica que la página enlazada corresponde a la fuente original.",
+30,Desindexación de parámetros,"Evitar indexar URL's con parámetros (?, #, =, &)",
