@@ -1,51 +1,34 @@
 # SEO Checklist Auditor
 
-[![CI/CD Pipeline](https://github.com/TU_USUARIO/seo-auditor/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/TU_USUARIO/seo-auditor/actions/workflows/ci-cd.yml)
+[![CI/CD](https://github.com/laurahenao2706/seo-auditor/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/laurahenao2706/seo-auditor/actions/workflows/ci-cd.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Framework en Python para auditar SEO tecnico de una URL con enfoque en POO, SOLID, separacion por capas y pruebas unitarias.
+Framework en Python para auditar SEO técnico de una URL con enfoque en POO, SOLID y arquitectura por capas.
 
-## Principios aplicados
+## ✨ Características
 
-- POO: clases con responsabilidades acotadas por capa.
-- SOLID:
-  - SRP: normalizacion, acceso HTTP, motor de reglas, serializacion y orquestacion separados.
-  - OCP: el motor permite extender reglas sin cambiar el contrato del servicio.
-  - LSP: cualquier implementacion de interfaces puede reemplazar la concreta.
-  - ISP: interfaces pequenas para HTTP, normalizacion y motor de reglas.
-  - DIP: el servicio depende de abstracciones, no de implementaciones concretas.
-- Patron principal: Strategy en el motor de reglas (ChecklistRuleEngine) inyectado al servicio.
-- Manejo de excepciones con errores de dominio (InvalidUrlError, FetchError).
+- 🏗️ **Arquitectura Hexagonal**: Separación en capas (domain, application, infrastructure)
+- 🧪 **Tests Unitarios**: Cobertura de tests incluida
+- 🔄 **CI/CD**: Pipeline automático con GitHub Actions
+- 🎨 **Interfaz Dual**: Web app (Streamlit) + CLI
+- 📊 **Exportación**: Resultados en JSON y CSV
 
 ## Estructura
 
 ```text
 SEO/
-|-- app.py
-|-- seo_checker.py
-|-- requirements.txt
-|-- seo_auditor/
-|   |-- application/
-|   |   |-- normalizer.py
-|   |   |-- rule_engine.py
-|   |   |-- serializers.py
-|   |   `-- service.py
-|   |-- domain/
-|   |   |-- exceptions.py
-|   |   |-- models.py
-|   |   `-- protocols.py
-|   `-- infrastructure/
-|       `-- http_client.py
-`-- tests/
-    |-- test_normalizer.py
-    |-- test_serializers.py
-    `-- test_service.py
+|--📁 Estructura del Proyecto
+
 ```
-
-## Requisitos
-
+seo-auditor/
+├── seo_auditor/       # Código principal (arquitectura hexagonal)
+│   ├── domain/        # Lógica de negocio
+│   ├── application/   # Casos de uso y servicios
+│   └── infrastructure/# Adaptadores externos
+├── tests/             # Tests unitarios
+├── app.py             # Aplicación Streamlit
+├── seo_checker.py     # CLI
+└── requirements.txt   # Dependencias
 - Python 3.10+
 - Dependencias de requirements.txt
 
@@ -55,197 +38,103 @@ SEO/
 python -m pip install -r requirements.txt
 ```
 
-## Ejecutar app web
+## 🚀 Instalación
+
+### Requisitos
+- Python 3.10+
+
+### Setup
+
+```bash
+# Clonar repositorio
+git clone https://github.com/laurahenao2706/seo-auditor.git
+cd seo-auditor
+
+# Instalar dependencias
+pip install -r requirements.txt
+```
+
+---
+
+## 💻 Uso
+
+### Aplicación Web (Streamlit)
 
 ```bash
 streamlit run app.py
 ```
 
-## Ejecutar CLI
+Abre tu navegador en `http://localhost:8501`
+
+### CLI
 
 ```bash
+# Análisis básico
+python seo_checker.py https://www.ejemplo.com
+
+# Con exportación
 python seo_checker.py https://www.ejemplo.com --out-json reporte.json --out-csv reporte.csv
 ```
 
-## Ejecutar pruebas unitarias
-
-```bash
-python -m unittest discover -s tests -p "test_*.py" -v
-```
-
-## Cobertura funcional
-
-- Se mantienen las 30 reglas del checklist SEO con estados PASS, FAIL, WARN y MANUAL.
-- Soporta exportacion de resultados a JSON y CSV.
-- Mantiene compatibilidad de uso por CLI y Streamlit.
-
-## Escalabilidad sugerida
-
-- Agregar nuevas estrategias de reglas para sectores o stacks especificos.
-- Incorporar adaptadores de almacenamiento para historial en base de datos.
-- Añadir un motor JS headless (Playwright) para automatizar reglas MANUAL.
-
 ---
 
-## 🚀 CI/CD y Deployment
-
-Este proyecto incluye pipelines completos de CI/CD configurados para:
-
-- ✅ **Tests automáticos** en múltiples versiones de Python (3.10, 3.11, 3.12)
-- ✅ **Linting y formateo** con Black, Flake8, isort, MyPy
-- ✅ **Security scanning** con Safety y Bandit
-- ✅ **Coverage reporting** integrado con Codecov
-- ✅ **Deployment automático** a Streamlit Cloud
-- ✅ **Notificaciones** de estado del pipeline
-
-### Herramientas Disponibles
-
-#### GitHub Actions (Recomendado)
-Pipeline configurado en `.github/workflows/ci-cd.yml`
+## 🧪 Testing
 
 ```bash
-# Ver documentación completa
-cat ANALISIS_CICD.md
-cat DEPLOYMENT_GUIDE.md
-```
-
-#### GitLab CI/CD (Alternativa)
-Pipeline configurado en `.gitlab-ci.yml`
-
-### Quick Start - Desarrollo
-
-```bash
-# 1. Clonar repositorio
-git clone <repo-url>
-cd seo-auditor
-
-# 2. Ejecutar setup automático
-python setup_dev.py
-
-# 3. Activar entorno virtual
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# 4. Ejecutar tests
+# Ejecutar todos los tests
 python -m unittest discover -s tests -v
 
-# 5. Verificar linting
-python -m black --check .
-python -m flake8 seo_auditor/
+# Ejecutar tests específicos
+python -m unittest tests.test_service -v
 ```
-
-### Deploy a Producción
-
-**Streamlit Cloud (Recomendado)**:
-1. Push código a GitHub/GitLab
-2. Conectar en https://share.streamlit.io/
-3. Deployment automático en cada push a `main`
-
-Ver [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) para opciones avanzadas (Heroku, Docker, Cloud Run).
 
 ---
 
-## 📚 Documentación Adicional
+## 🔄 CI/CD
 
-- 📊 [**ANALISIS_CICD.md**](ANALISIS_CICD.md) - Análisis comparativo de herramientas CI/CD
-- 🚀 [**DEPLOYMENT_GUIDE.md**](DEPLOYMENT_GUIDE.md) - Guía completa de deployment
-- ✅ [**CICD_BEST_PRACTICES.md**](CICD_BEST_PRACTICES.md) - Mejores prácticas y optimizaciones
-- 📖 [**REPORTE_TECNICO_DETALLADO.md**](REPORTE_TECNICO_DETALLADO.md) - Documentación técnica completa
+El proyecto incluye un pipeline simple de CI/CD con GitHub Actions:
+
+- **Linting**: Black + Flake8
+- **Tests**: Unitarios automáticos
+- **Notificaciones**: Estado del pipeline
+
+El pipeline se ejecuta automáticamente en cada push a `main` o en Pull Requests.
+
+### Ver Pipeline
+- Ve a la pestaña [Actions](../../actions) en GitHub
+- Cada commit muestra el estado del pipeline
 
 ---
 
-## 🛠️ Desarrollo
+## 📊 Funcionalidad
 
-### Estructura del Proyecto
+- ✅ Auditoría de 30 reglas SEO técnicas
+- ✅ Estados: PASS, FAIL, WARN, MANUAL
+- ✅ Exportación a JSON y CSV
+- ✅ Interfaz web + CLI
 
-```text
-SEO/
-├── .github/
-│   └── workflows/
-│       └── ci-cd.yml          # GitHub Actions pipeline
-├── .gitlab-ci.yml             # GitLab CI/CD pipeline
-├── seo_auditor/               # Código principal
-│   ├── application/           # Capa de aplicación
-│   ├── domain/                # Lógica de dominio
-│   └── infrastructure/        # Adaptadores externos
-├── tests/                     # Tests unitarios
-├── app.py                     # Aplicación Streamlit
-├── seo_checker.py             # CLI
-├── requirements.txt           # Dependencias producción
-├── requirements-dev.txt       # Dependencias desarrollo
-├── pyproject.toml             # Configuración herramientas
-├── setup_dev.py               # Script de setup
-└── .gitignore                 # Archivos ignorados
-```
+---
 
-### Comandos de Desarrollo
+## 🛣️ Roadmap
 
-```bash
-# Formatear código automáticamente
-python -m black .
-python -m isort .
-
-# Análisis de código
-python -m flake8 seo_auditor/
-python -m mypy seo_auditor/ --ignore-missing-imports
-
-# Tests con coverage
-python -m coverage run -m unittest discover -s tests
-python -m coverage report
-python -m coverage html  # Genera reporte HTML en htmlcov/
-
-# Security checks
-python -m safety check
-python -m bandit -r seo_auditor/
-```
-
-### Pre-commit Hooks
-
-```bash
-# Instalar pre-commit
-pip install pre-commit
-
-# Activar hooks
-pre-commit install
-
-# Ejecutar manualmente en todos los archivos
-pre-commit run --all-files
-```
+- [ ] Agregar más reglas SEO
+- [ ] Security scanning en CI/CD
+- [ ] Tests en múltiples versiones de Python
+- [ ] Coverage reporting
+- [ ] Deploy automático a Streamlit Cloud
 
 ---
 
 ## 🤝 Contribuir
 
-1. Fork el repositorio
-2. Crea una rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'feat: agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit tus cambios (`git commit -m 'feat: nueva funcionalidad'`)
+4. Push (`git push origin feature/nueva-funcionalidad`)
 5. Abre un Pull Request
-
-**El pipeline CI/CD se ejecutará automáticamente** en tu PR para validar:
-- Tests pasan ✅
-- Linting OK ✅
-- Security checks OK ✅
-- Coverage >= 80% ✅
 
 ---
 
 ## 📄 Licencia
 
-MIT License - ver archivo LICENSE para detalles
-
----
-
-## 👥 Autores
-
-- **Tu Nombre** - *Desarrollo inicial*
-
----
-
-## 🙏 Agradecimientos
-
-- Arquitectura hexagonal inspirada en Clean Architecture
-- Configuración CI/CD basada en mejores prácticas de la comunidad Python
-- Testing patterns de pytest y unittest best practices
+MIT License
