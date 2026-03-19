@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Aplicación principal Streamlit
+  seo-auditor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: seo-auditor-app
+    ports:
+      - "8501:8501"  # Mapear puerto local 8501 al contenedor
+    volumes:
+      # Montar código en modo desarrollo para hot-reload
+      - .:/app
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Servicio para ejecutar tests (opcional, usar con: docker-compose run tests)
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: seo-auditor-tests
+    command: python -m pytest tests/ -v
+    volumes:
+      - .:/app
+    profiles:
+      - testing  # Solo se ejecuta con: docker-compose --profile testing up

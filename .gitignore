@@ -163,6 +163,15 @@ installed-packages.txt
 .streamlit/config.toml
 
 # ============================================
+# Documentación Local (no subir a GitHub)
+# ============================================
+LEARNING_PATH_CICD.html
+LEARNING_PATH_CICD.pdf
+DOCKER_QUICKSTART.md
+generate_pdf.py
+GIT_AUTH_FIX.md
+
+# ============================================
 # Misc
 # ============================================
 # Backups

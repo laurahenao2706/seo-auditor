@@ -67,12 +67,59 @@ jobs:
       run: python -m py_compile app.py seo_checker.py
 
   # ============================================
-  # JOB 3: Notificación
+  # JOB 3: Build y Push de Docker Image
+  # ============================================
+  docker:
+    name: Docker Build & Push
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    permissions:
+      contents: read
+      packages: write  # Necesario para push a ghcr.io
+    
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+    
+    - name: Login a GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extraer metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ghcr.io/${{ github.repository }}
+        tags: |
+          type=raw,value=latest
+          type=sha,prefix={{branch}}-
+    
+    - name: Build y Push imagen Docker
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+    
+    - name: Resultado del build
+      run: |
+        echo "✅ Imagen Docker publicada exitosamente"
+        echo "📦 Registry: ghcr.io/${{ github.repository }}"
+        echo "🏷️  Tags: ${{ steps.meta.outputs.tags }}"
+
+  # ============================================
+  # JOB 4: Notificación
   # ============================================
   notify:
     name: Status
     runs-on: ubuntu-latest
-    needs: [lint, test]
+    needs: [lint, test, docker]
     if: always()
     
     steps:
@@ -80,6 +127,7 @@ jobs:
       run: |
         echo "Lint: ${{ needs.lint.result }}"
         echo "Test: ${{ needs.test.result }}"
+        echo "Docker: ${{ needs.docker.result }}"
         if [[ "${{ needs.lint.result }}" == "success" && "${{ needs.test.result }}" == "success" ]]; then
           echo "✅ Pipeline completado exitosamente"
         else

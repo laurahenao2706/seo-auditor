@@ -1,0 +1,46 @@
+# Git y control de versiones
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos temporales y logs
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Documentación y archivos no necesarios en producción
+*.md
+!README.md
+*.pdf
+*.html
+
+# Tests (no necesarios en imagen de producción)
+tests/
+test_*.py
+
+# CSV de ejemplo
+*.csv
