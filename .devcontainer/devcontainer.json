@@ -1,11 +1,13 @@
 {
-	"name": "SEO Auditor - Docker Development",
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+	"name": "SEO Auditor - Python + Docker",
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
 	
 	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.12"
+		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"version": "latest",
-			"moby": true
+			"version": "latest"
 		}
 	},
 
